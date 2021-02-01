@@ -1,53 +1,35 @@
-function myFuncBlurA(){
-var title=document.getElementById("title");
-title.classList.remove("highlightable");
-}
-function myFuncBlurB(){
-var descript=document.getElementById("description");
-descript.classList.remove("highlightable");
-}
 
+/* add code here  */
+window.addEventListener('load', funnction(){
 
-function myFuncFocusA(){
-var title=document.getElementById("title");
-title.classList.add("highlightable");
-title.classList.remove("error");
+var hilightableInputs = document.querySelectorAll('.hilightableInputs');
+for(i=0; i < hilightableInputs.length; i++) {
+var toggle = (event) => { event.target.classLsit.toggle('hilight')}
+hilightableInputs[i].addEventListener('focus',toggle)
+hilightableInputs[i].addEventListener('blur',toggle)
 }
 
-function preventDefault(){
-var title=document.getElementById("title");
-var descript=document.getElementById("description");
-var medi=document.getElementById("medium");
-var year=document.getElementById("year");
-var museu=document.getElementById("museum");
+var form = document.getelementById("mainForm");
+form.addEventListener("submit", submissionCheck);
+function submissionCheck(event){
+var requiredInputs = document.querySelectorAll(".required");
+for(i-0; i < requiredInputs.length; i++)
+{
+if(requiredInputs[i].value == "")
+{
+event.preventDefault();
+requiredInputs[i].classList.add("error");
+}
+else {
+requiredInputs[i].classList.remove("error");
+}
+form.addEventListener('reset',resetform)
 
-if(title.value==""){
-title.classList.add("error");
-}
-else{
-title.classList.remove("error");
-}
-if(descript.value==""){
-descript.classList.add("error");
-}
-else{
-descript.classList.remove("error");
-}
-
-
-return(false);
-}
-function logSubmit(handler){
-handler.preventDefault();
+function resetform(event){
+var requiredInputs = document.querySelectorAll(".required");
+for(i-0; i < requiredInputs.length; i++){
+requiredInputs[i].classList.remove("error");
 }
 
-
-
-
-
-
-
-
-
-
-
+}
+})
